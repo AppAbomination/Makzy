@@ -23,7 +23,7 @@ module.exports.loop = function(){
             roleBuilder.run(creep);
         }
         else if(creep.memory.role == "repairer"){
-            roleHarvester.run(creep);
+            roleRepairer.run(creep);
         }
 
         Memory.Harvesters = numeroDeHarvesters;
@@ -65,6 +65,13 @@ module.exports.loop = function(){
         else if(numeroDeBuilders < minimoNumeroDeBuilders) {
             name = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE, MOVE], undefined,
                 {role: "builder", working: false});
+            if(!(name < 0)){
+                console.log("Un creep spawneo: " + name + ". Su rol es " + Game.creeps[name].memory.role);
+            }
+        }
+        else{
+            name = Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], undefined,
+                {role: "repairer", working: false});
             if(!(name < 0)){
                 console.log("Un creep spawneo: " + name + ". Su rol es " + Game.creeps[name].memory.role);
             }
